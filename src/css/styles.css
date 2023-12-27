@@ -23,3 +23,35 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.timer {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+}
+
+#datetime-picker {
+  margin-bottom: 30px;
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.value {
+  font-weight: 500;
+  font-size: x-large;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 6px;
+}
