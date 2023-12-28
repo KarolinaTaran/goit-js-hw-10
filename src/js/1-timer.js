@@ -28,16 +28,19 @@ flatpickr(textInput, options);
 
 const startButton = document.querySelector('[data-start]');
 let countdownDisplays = document.querySelectorAll('.value');
+startButton.disabled = true;
+textInput.disabled = false;
 
 function updateStartButtonStatus() {
   if (userSelectedDate < new Date()) {
     iziToast.show({
       message: 'Please choose a date in the future',
     });
-    startButton.disabled = true;
   } else {
     startButton.disabled = false;
+    textInput.disabled = true;
   }
+  return;
 }
 
 startButton.addEventListener('click', () => {
@@ -57,7 +60,7 @@ function startCountdown() {
     if (timeDifference <= 0) {
       clearInterval(countdownInterval);
       console.log('Countdown finished!');
-      startButton.disabled = false;
+      textInput.disabled = false;
     } else {
       const { days, hours, minutes, seconds } = convertMs(timeDifference);
       updateCountdownDisplay(days, hours, minutes, seconds);
@@ -83,7 +86,7 @@ function updateCountdownDisplay(days, hours, minutes, seconds) {
   countdownDisplays.forEach((display, index) => {
     switch (index) {
       case 0:
-        display.textContent = `${days}`;
+        display.textContent = `${addLeadingZero(days)}`;
         break;
       case 1:
         display.textContent = `${addLeadingZero(hours)}`;
